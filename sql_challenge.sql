@@ -74,13 +74,13 @@ ON s.address_id = a.address_id;
 
 #6b. Use `JOIN` to display the total amount rung up by each staff member in August of 2005. 
 #Use tables `staff` and `payment`.
-SELECT UPPER(CONCAT(s.first_name, ' ', s.last_name))  AS 'Staff Name', sum(p.amount) as 'Total Rung'
+SELECT UPPER(s.last_name)  AS 'Staff_Name', sum(p.amount) as 'Total Rung'
 FROM sakila.staff s
 JOIN sakila.payment p
 ON s.staff_id = p.staff_id
 WHERE YEAR(p.payment_date) = 2005
 	AND MONTH(p.payment_date) = 8
-GROUP BY CONCAT(s.first_name, ' ', s.last_name);
+GROUP BY Staff_Name;
 
 #6c. List each film and the number of actors who are listed for that film. Use tables `film_actor` 
 #and `film`. Use inner join.
@@ -99,12 +99,12 @@ WHERE UPPER(f.title) = 'HUNCHBACK IMPOSSIBLE';
 
 #6e. Using the tables `payment` and `customer` and the `JOIN` command, list the total paid by each 
 #customer. List the customers alphabetically by last name:
-SELECT UPPER(CONCAT(c.first_name, ' ', c.last_name))  AS 'Customer Name', sum(p.amount)
+SELECT UPPER(c.last_name) AS Customer_Name, sum(p.amount)
 FROM sakila.customer c
 JOIN sakila.payment p
 ON c.customer_id = p.customer_id
-GROUP BY CONCAT(c.first_name, ' ', c.last_name)
-ORDER BY c.last_name;
+GROUP BY Customer_Name
+ORDER BY Customer_Name;
 
 #![Total amount paid](Images/total_payment.png)
 
